@@ -16,7 +16,7 @@ import com.stock.springboot.stockSight.repository.QuoteRepository;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("stock_api/v1")
+@RequestMapping("stock_quote_api/v1")
 public class QuoteController {	
 	@Autowired
 	private QuoteRepository quoteRepository;
