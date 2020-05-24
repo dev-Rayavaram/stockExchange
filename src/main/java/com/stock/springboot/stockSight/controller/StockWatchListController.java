@@ -7,6 +7,7 @@ import java.util.Map;
 import com.stock.springboot.stockSight.exception.ResourceNotFoundException;
 import com.stock.springboot.stockSight.model.StockWatchList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.stock.springboot.stockSight.service.StockWatchListService;
@@ -30,9 +31,9 @@ public class StockWatchListController {
 		return stockWatchListService.createStockList(stocklistItem);
 	}
 	@PutMapping("/stock/{id}")
-	public StockWatchList updateStockListById(@PathVariable Long id ,@Valid @RequestBody StockWatchList stocklistItem)
-	{
-		 return stockWatchListService.createStockList(stocklistItem);
+	public ResponseEntity<StockWatchList> updateStockListById(@PathVariable Long id ,@Valid @RequestBody StockWatchList stocklistItem)
+			throws ResourceNotFoundException{
+		 return stockWatchListService.updateStockListById(id, stocklistItem);
 	}
 
 	@DeleteMapping("/stocks/{id}")

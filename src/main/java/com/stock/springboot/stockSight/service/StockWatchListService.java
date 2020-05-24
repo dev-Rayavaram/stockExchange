@@ -34,7 +34,7 @@ public class StockWatchListService {
 			orElseThrow(() -> new ResourceNotFoundException("Stock Item notfound" + customerId));
 			listItem.setListType(stockListItemDetail.getListType());
 			listItem.setSymbol(stockListItemDetail.getSymbol());
-
+			System.out.println("Syamala IS PRINTING"+listItem);
 			final StockWatchList updatedListItem = stockWatchListRepo.save(listItem);
 			return ResponseEntity.ok(updatedListItem);
 		}
