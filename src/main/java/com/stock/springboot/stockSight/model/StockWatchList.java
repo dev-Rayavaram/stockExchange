@@ -1,59 +1,49 @@
 package com.stock.springboot.stockSight.model;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
 @Entity
 @Table(name = "stock_watch")
 public class StockWatchList {
-
-
-
-
-	@Id
-	@GeneratedValue
-	@Column(name = "stock_watch_id")
-	private long id;
-
-
+	@Column(name = "customer_id")
+	private String id;
 	private String symbol;
-
-	@Column(name = "exchange")
-	private String exchange;
-
-
-	@Column(name = "price")
-	private float price;
 	
-	@Column(name = "volume")
-	private int volume;
-
-
-	@Column(name = "market_cap")
-	private double marketCap;
+	@Column(name="list_type")
+	private String listType;
+	@OneToMany(targetEntity=StockSymbol.class,cascade=CascadeType.ALL,fetch=FetchType.LAZY,orphanRemoval=true)
+	@JoinColumn( name="customer_id",referencedColumnName="id")
+	private List <StockSymbol> stockSymbols;
+	
 
 	public StockWatchList() {
 		super();
 	}
 
-	public StockWatchList(String symbol, String exchange, float price,int volume,double marketCap) {
+	public StockWatchList(Long id,String symbol,String listType) {
 		super();
 		this.symbol = symbol;
-		this.exchange = exchange;
-		this.price = price;
-		this.volume = volume;
-		this.marketCap = marketCap;
+	
 	}
 
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -65,36 +55,20 @@ public class StockWatchList {
 		this.symbol = symbol;
 	}
 
-	public String getExchange() {
-		return exchange;
+	public String getListType() {
+		return listType;
 	}
 
-	public void setExchange(String exchange) {
-		this.exchange = exchange;
+	public void setListType(String listType) {
+		this.listType = listType;
 	}
 
-	public float getPrice() {
-		return price;
+	public List<StockSymbol> getStockSymbols() {
+		return stockSymbols;
 	}
 
-	public void setPrice(float price) {
-		this.price = price;
-	}
-
-	public int getVolume() {
-		return volume;
-	}
-
-	public void setVolume(int volume) {
-		this.volume = volume;
-	}
-
-	public double getMarketCap() {
-		return marketCap;
-	}
-
-	public void setMarketCap(double marketCap) {
-		this.marketCap = marketCap;
+	public void setStockSymbols(List<StockSymbol> stockSymbols) {
+		this.stockSymbols = stockSymbols;
 	}
 
 

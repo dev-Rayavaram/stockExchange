@@ -1,9 +1,13 @@
 package com.stock.springboot.stockSight.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,17 +17,16 @@ public class StockSymbol {
 
 
 	@Id
-	@GeneratedValue
-	@Column(name = "stock_symbol_id")
-	private long id;
-
-
 	private String symbol;
 
+	@OneToOne(targetEntity=Quote.class,cascade=CascadeType.ALL,fetch=FetchType.LAZY,orphanRemoval=true)
+	@JoinColumn( name="symbol",referencedColumnName="symbol")
+	private Quote quote;
 	@Column(name = "name")
 	private String name;
-
-
+	
+	@Column(name="customer_id")
+	private String customer_id;
 	@Column(name = "price")
 	private float price;
 	public StockSymbol() {
@@ -37,16 +40,7 @@ public class StockSymbol {
 		
 	}
 
-	public long getId() {
-		return id;
-	}
-
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-
+	
 	public String getSymbol() {
 		return symbol;
 	}
@@ -74,6 +68,22 @@ public class StockSymbol {
 
 	public void setPrice(float price) {
 		this.price = price;
+	}
+
+	public String getCustomer_id() {
+		return customer_id;
+	}
+
+	public void setCustomer_id(String customer_id) {
+		this.customer_id = customer_id;
+	}
+
+	public Quote getQuote() {
+		return quote;
+	}
+
+	public void setQuote(Quote quote) {
+		this.quote = quote;
 	}
 	
 
