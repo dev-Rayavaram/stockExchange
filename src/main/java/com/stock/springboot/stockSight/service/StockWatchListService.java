@@ -21,14 +21,14 @@ import com.stock.springboot.stockSight.repository.StockWatchListRepository;
 public class StockWatchListService {
 @Autowired
 	private StockWatchListRepository stockWatchListRepo;
-		public List<StockWatchList>getAllWatchList(){
+		public List<StockWatchList>getAllStockWatchList(){
 			return stockWatchListRepo.findAll();
 		}
-		public StockWatchList createStockListItem(@Valid @RequestBody StockWatchList stockListItem)
+		public StockWatchList createStockList(@Valid @RequestBody StockWatchList stockListItem)
 		{
 			return stockWatchListRepo.save(stockListItem);
 		}
-		public ResponseEntity<StockWatchList> updateStockListItemById(@PathVariable(value="id") Long customerId,@Valid @RequestBody StockWatchList stockListItemDetail)
+		public ResponseEntity<StockWatchList> updateStockListById(@PathVariable(value="id") Long customerId,@Valid @RequestBody StockWatchList stockListItemDetail)
 				throws ResourceNotFoundException {
 			StockWatchList listItem = stockWatchListRepo.findById(customerId).
 			orElseThrow(() -> new ResourceNotFoundException("Stock Item notfound" + customerId));
@@ -39,7 +39,7 @@ public class StockWatchListService {
 			return ResponseEntity.ok(updatedListItem);
 		}
 
-		public Map<String,Boolean>deleteStockListItem(@PathVariable(value="id") Long customerId)
+		public Map<String,Boolean>deleteStockListById(@PathVariable(value="id") Long customerId)
 				throws ResourceNotFoundException {
 			StockWatchList stockListItem = stockWatchListRepo.findById(customerId).
 					orElseThrow(() -> new ResourceNotFoundException("stockListItem notfound" + customerId));

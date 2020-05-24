@@ -15,24 +15,22 @@ import com.stock.springboot.stockSight.model.Quote;
 import com.stock.springboot.stockSight.repository.QuoteRepository;
 
 @Service
-
 public class QuoteService {
 	@Autowired
 	private QuoteRepository quoteRepository;
-	public List<Quote>getAllStocksList(){
+	public List<Quote>getAllQuotes(){
 		return quoteRepository.findAll();
 	}
-	public Quote createQuoteItem(@Valid @RequestBody Quote quoteItem)
+	public Quote createQuote(@Valid @RequestBody Quote quoteItem)
 	{
 		return quoteRepository.save(quoteItem);
 	}
 	
 
-	public Map<String,Boolean>deleteQuoteItem(@PathVariable(value="symbol") String stockSymbol)
+	public Map<String,Boolean>deleteQuoteById(@PathVariable(value="symbol") String stockSymbol)
 			throws ResourceNotFoundException {
-		Quote quoteItem = quoteRepository.findById(stockSymbol).
-				orElseThrow(() -> new ResourceNotFoundException("stockListItem notfound" + stockSymbol));
-				quoteRepository.delete(quoteItem);
+		Quote quoteItem = quoteRepository.findBySymbol(stockSymbol);
+		quoteRepository.delete(quoteItem);
 		Map<String,Boolean>response = new HashMap<>();
 		response.put("deleted stockItem",Boolean.TRUE);
 		return response;

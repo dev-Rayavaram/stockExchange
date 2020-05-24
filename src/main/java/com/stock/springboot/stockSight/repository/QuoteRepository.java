@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 
 import com.stock.springboot.stockSight.model.Quote;
 @Repository
-public interface QuoteRepository extends JpaRepository<Quote, String>{
+public interface QuoteRepository extends JpaRepository<Quote, Long>{
+	public Quote findBySymbol(String symbol);
 
 }

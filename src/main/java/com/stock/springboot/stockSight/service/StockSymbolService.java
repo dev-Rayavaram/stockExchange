@@ -6,7 +6,6 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,13 +22,13 @@ public class StockSymbolService {
 	public List<StockSymbol>getAllStocksList(){
 		return stockSymbolRepo.findAll();
 	}
-	public StockSymbol createStockItem(@Valid @RequestBody StockSymbol stockItem)
+	public StockSymbol createStock(@Valid @RequestBody StockSymbol stockItem)
 	{
 		return stockSymbolRepo.save(stockItem);
 	}
 	
 
-	public Map<String,Boolean>deleteStockItem(@PathVariable(value="id") Long customerId)
+	public Map<String,Boolean>deleteStockById(@PathVariable(value="id") Long customerId)
 			throws ResourceNotFoundException {
 		StockSymbol stockItem = stockSymbolRepo.findById(customerId).
 				orElseThrow(() -> new ResourceNotFoundException("stockListItem notfound" + customerId));

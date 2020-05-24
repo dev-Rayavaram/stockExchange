@@ -11,6 +11,9 @@ import javax.persistence.Table;
 public class Quote {
 
 	@Id
+	@GeneratedValue
+	@Column(name = "id")
+	private long id;
 	private String symbol;
 	@Column(name = "exchange")
 	private String exchange;

@@ -1,17 +1,16 @@
 package com.stock.springboot.stockSight.controller;
 
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.stock.springboot.stockSight.exception.ResourceNotFoundException;
 import com.stock.springboot.stockSight.model.StockWatchList;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.stock.springboot.stockSight.repository.StockWatchListRepository;
+import com.stock.springboot.stockSight.service.StockWatchListService;
+
 import javax.validation.Valid;
 
 @RestController
@@ -19,11 +18,30 @@ import javax.validation.Valid;
 
 public class StockWatchListController {
 	@Autowired
-	private StockWatchListRepository stockWatchListRepository;
+	private StockWatchListService stockWatchListService;
 	
-	@GetMapping("/stock_watch_list")
+	@GetMapping("/")
 	public List<StockWatchList>getAllStockWatchList(){
-		return stockWatchListRepository.findAll();
+		return stockWatchListService.getAllStockWatchList();
 	}
+	@PostMapping("/stocks")
+	public StockWatchList addStockWatchList(@Valid @RequestBody StockWatchList stocklistItem)
+	{
+		return stockWatchListService.createStockList(stocklistItem);
+	}
+	@PutMapping("/stocks/{id}")
+	public StockWatchList updateStockListById(@PathVariable Long id ,@Valid @RequestBody StockWatchList stocklistItem)
+	{
+		 return stockWatchListService.createStockList(stocklistItem);
+	}
+
+	@DeleteMapping("/employees/{id}")
+	public Map<String,Boolean> deleteStockListById(@PathVariable Long id)throws ResourceNotFoundException 
+	{
+		return stockWatchListService.deleteStockListById(id);
+		
+	}
+
+	
 
 }
