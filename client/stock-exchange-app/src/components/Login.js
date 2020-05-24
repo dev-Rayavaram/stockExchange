@@ -61,7 +61,7 @@ class  Login extends Component {
 
               <Grid  style={{background:'teal',width:'60%' ,height:'50%',maxWidth: 450}}>
                 <Grid.Column style={{ maxWidth: 450 }}>
-                  <Header as='h2' color='teal' textAlign='center'>
+                  <Header as='h2' color="violet" textAlign='center'>
                     Log-in to your account
                   </Header>
                   <Form size='large' >
@@ -125,7 +125,7 @@ class  Login extends Component {
         <Grid textAlign='center' style={{ height: '100%' ,width:'100%'}}  verticalAlign='middle'>
           <Grid  style={{background:'teal',width:'60%' ,height:'50%',maxWidth: 450}}>
             <Grid.Column style={{ maxWidth: 450 }}>
-              <Header as='h2' color='teal' textAlign='center'>
+              <Header as='h2' color='violet' textAlign='center'>
                 Signup for new account
               </Header>
               <Form size='large' >

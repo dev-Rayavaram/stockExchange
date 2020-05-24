@@ -4,7 +4,7 @@ import {Container, Form, Grid, Header, Segment,Icon ,Menu } from 'semantic-ui-re
 import 'semantic-ui-css/semantic.min.css'
 import Login,{Signup} from './Login'
 import { BrowserRouter as Router, Route,Link} from 'react-router-dom';
-const url =" http://localhost:3003";
+const url =" http://localhost:3000";
 class Profile extends Component{
     constructor(props){
         super(props)

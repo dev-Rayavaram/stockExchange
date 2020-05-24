@@ -1,10 +1,12 @@
 import React ,{Component} from 'react';
-import './App.css';
+import './styles/App.scss';
 import Login,{Signup} from './components/Login';
 import Profile from './components/Profile';
 import { BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
 import firebase  from './config/fireauth';
 import {} from 'react-bootstrap';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 class  App extends Component{
   constructor(props){
@@ -31,30 +33,36 @@ class  App extends Component{
     if(this.state.user!==null && this.state.user!==undefined ) {
 
       return (
-
-              <div className="App">
-              <Router>
-                <div id="navContainer">
-                  <nav>
-                    <ul>
-                      <li>
-                        <Link to="/"></Link>
-                      </li>
-                      <li>
-                        <Link to="/Profile">Profile</Link>
-                      </li>
-                    </ul>
-                  </nav>
-                  <Switch>
-                    <Route path="/Profile">
-                      <Profile />
-                    </Route>
-                    </Switch>
+                  <div className="App">
+                  <div className="header">
+                      <Header/>
+                      <>
+                        <Router>  
+                            <nav> 
+                            <ul className="menu">
+                            <li>
+                              <Link to="/Profile" >Resources</Link>
+                            </li>
+                            <li>
+                              <Link to='/' >Profile</Link>
+                            </li>
+                            </ul>
+                            </nav>
+                            <Switch>
+                              <Route exact path="/Profile" component={Profile}>  
+                              {this.props.children}
+                            </Route> 
+                            <Route exact path="/" component={Profile}>  
+                            </Route> 
+                        </Switch>
+                        </Router>            
+                      </>
+                  </div>
+                  <div className="footer">
+                      <Footer/>
+                  </div>
                 </div>
-              </Router>
-            </div>
-
-
+            
 
 
       )
@@ -63,9 +71,9 @@ class  App extends Component{
                 <div className="App">
                 <Router>
                   <nav>
-                  <Link to="/Login" ></Link>
-                  <Link to="/Signup" ></Link>
-                  <Link to="/" ></Link>
+                      <Link to="/Login" ></Link>
+                      <Link to="/Signup" ></Link>
+                      <Link to="/" ></Link>
                   </nav>
                   <Route exact path="/Login" component={Login}>
                   </Route>
