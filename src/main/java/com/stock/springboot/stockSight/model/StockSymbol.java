@@ -14,11 +14,8 @@ import javax.persistence.Table;
 @Table(name = "stock_symbol")
 
 public class StockSymbol {
-
-
 	@Id
 	private String symbol;
-
 	@OneToOne(targetEntity=Quote.class,cascade=CascadeType.ALL,fetch=FetchType.LAZY,orphanRemoval=true)
 	@JoinColumn( name="symbol",referencedColumnName="symbol")
 	private Quote quote;
@@ -33,11 +30,12 @@ public class StockSymbol {
 		super();
 	}
 
-	public StockSymbol(String symbol, String name, float price) {
+	public StockSymbol(String symbol, String name,String customer_id, float price) {
 		super();
 		this.symbol = symbol;
-		this.price = price;
-		
+		this.name = name;
+		this.customer_id=customer_id;
+		this.price=price;
 	}
 
 	

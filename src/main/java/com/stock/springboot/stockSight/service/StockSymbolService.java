@@ -15,11 +15,10 @@ import com.stock.springboot.stockSight.model.StockSymbol;
 import com.stock.springboot.stockSight.repository.StockSymbolRepository;
 
 @Service
-
 public class StockSymbolService {
 	@Autowired
 	private StockSymbolRepository stockSymbolRepo;
-	public List<StockSymbol>getAllStocksList(){
+	public List<StockSymbol>getAllStockSymbols(){
 		return stockSymbolRepo.findAll();
 	}
 	public StockSymbol createStock(@Valid @RequestBody StockSymbol stockItem)
@@ -28,15 +27,15 @@ public class StockSymbolService {
 	}
 	
 
-	public Map<String,Boolean>deleteStockById(@PathVariable(value="id") Long customerId)
-			throws ResourceNotFoundException {
-		StockSymbol stockItem = stockSymbolRepo.findById(customerId).
-				orElseThrow(() -> new ResourceNotFoundException("stockListItem notfound" + customerId));
-		stockSymbolRepo.delete(stockItem);
-		Map<String,Boolean>response = new HashMap<>();
-		response.put("deleted stockItem",Boolean.TRUE);
-		return response;
-
-	}
+//	public Map<String,Boolean>deleteStockById(@PathVariable(value="symbol") String symbol)
+//			throws ResourceNotFoundException {
+//		StockSymbol stockItem = stockSymbolRepo.findById(symbol).
+//				orElseThrow(() -> new ResourceNotFoundException("stockListItem notfound" + symbol));
+//		stockSymbolRepo.delete(stockItem);
+//		Map<String,Boolean>response = new HashMap<>();
+//		response.put("deleted stockItem",Boolean.TRUE);
+//		return response;
+//
+//	}
 
 }

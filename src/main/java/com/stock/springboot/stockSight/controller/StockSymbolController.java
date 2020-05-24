@@ -3,9 +3,7 @@ package com.stock.springboot.stockSight.controller;
 
 
 import java.util.List;
-import java.util.Map;
 
-import com.stock.springboot.stockSight.exception.ResourceNotFoundException;
 import com.stock.springboot.stockSight.model.StockSymbol;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,23 +19,23 @@ public class StockSymbolController {
 	@Autowired
 	private StockSymbolService stockSymbolService;
 	
-	@GetMapping("/stock")
-	public List<StockSymbol>getAllStockWatchList(){
-		return stockSymbolService.getAllStocksList();
+	@GetMapping("/symbol")
+	public List<StockSymbol>getAllStockSymbols(){
+		return stockSymbolService.getAllStockSymbols();
 	}
-	@PostMapping("/stock/stocks")
-	public StockSymbol addStockWatchList(@Valid @RequestBody StockSymbol stockSymbolItem)
+	@PostMapping("/symbol/stocks")
+	public StockSymbol addStockSymbol(@Valid @RequestBody StockSymbol stockSymbolItem)
 	{
 		return stockSymbolService.createStock(stockSymbolItem);
 	}
 	
 
-	@DeleteMapping("/stock/{id}")
-	public Map<String,Boolean> deleteStockListById(@PathVariable Long id)throws ResourceNotFoundException 
-	{
-		return stockSymbolService.deleteStockById(id);
-		
-	}
+//	@DeleteMapping("/symbol/{symbol}")
+//	public Map<String,Boolean> deleteStockListById(@PathVariable String symbol)throws ResourceNotFoundException 
+//	{
+//		return stockSymbolService.deleteStockById(symbol);
+//		
+//	}
 
 	
 

@@ -29,13 +29,13 @@ public class StockWatchListController {
 	{
 		return stockWatchListService.createStockList(stocklistItem);
 	}
-	@PutMapping("/stocks/{id}")
+	@PutMapping("/stock/{id}")
 	public StockWatchList updateStockListById(@PathVariable Long id ,@Valid @RequestBody StockWatchList stocklistItem)
 	{
 		 return stockWatchListService.createStockList(stocklistItem);
 	}
 
-	@DeleteMapping("/employees/{id}")
+	@DeleteMapping("/stocks/{id}")
 	public Map<String,Boolean> deleteStockListById(@PathVariable Long id)throws ResourceNotFoundException 
 	{
 		return stockWatchListService.deleteStockListById(id);

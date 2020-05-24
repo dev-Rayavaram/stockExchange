@@ -27,15 +27,15 @@ public class QuoteService {
 	}
 	
 
-	public Map<String,Boolean>deleteQuoteById(@PathVariable(value="symbol") String stockSymbol)
-			throws ResourceNotFoundException {
-		Quote quoteItem = quoteRepository.findBySymbol(stockSymbol);
-		quoteRepository.delete(quoteItem);
-		Map<String,Boolean>response = new HashMap<>();
-		response.put("deleted stockItem",Boolean.TRUE);
-		return response;
-
-	}
+//	public Map<String,Boolean>deleteQuoteById(@PathVariable(value="symbol") String stockSymbol)
+//			throws ResourceNotFoundException {
+//		Quote quoteItem = quoteRepository.findBySymbol(stockSymbol);
+//		quoteRepository.delete(quoteItem);
+//		Map<String,Boolean>response = new HashMap<>();
+//		response.put("deleted stockItem",Boolean.TRUE);
+//		return response;
+//
+//	}
 
 
 }
