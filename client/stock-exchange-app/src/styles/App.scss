@@ -14,17 +14,6 @@ $primaryColor: #ffffff;
   align-items: center;
   justify-content: center;
 }
-.App::before {    
-  content: "";
-  background-image:url('../images/stock-market-graph.jpg');
-  background-size: cover;
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-  opacity: .5;
-}
 
 .header,
  .footer{
