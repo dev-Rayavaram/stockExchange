@@ -3,14 +3,14 @@
 @import "~bootstrap/scss/bootstrap";
 $container-width: 100%;
 $container-height:100%;
-$primaryColor: #b2ad7f;
+$primaryColor: #ffffff;
 .App{
   width:100%;
   height:100%;
   min-height: 100vh;
   text-align: center;
    display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
@@ -25,9 +25,10 @@ $primaryColor: #b2ad7f;
   left: 0px;
   opacity: .5;
 }
+
 .header,
  .footer{
-   background-color: #878f99;
+   background-color: #ffffff;
    color:white;
   display:flex;
   flex-direction:row;
@@ -36,6 +37,110 @@ $primaryColor: #b2ad7f;
   width:100%;
   min-height: 10%;
  }
+
+ h3{
+  font-size: 25px;
+  color: white; font-weight: bold; 
+}
+p{
+  font-size: 20px;
+  color: white; font-weight: bold; 
+}
+
+
+.menu{
+display: flex;
+flex-direction: row;
+background-color: #555;
+color: white;
+cursor:pointer;
+}
+.main{
+display: grid;
+grid-auto-flow: row;
+min-width: 100vh;
+width:$container-width;
+background-color: $primaryColor;
+height: $container-height;
+background-image: none;
+}
+
+@mixin media($queryString){
+@media #{$queryString} {
+  @content;
+}
+}
+.container {
+margin-top: 2%;
+margin-left: 10%;
+label{
+  font-size: 25px;
+  color: white; font-weight: bold; 
+}
+
+
+@include media("(max-width: 767px)"){
+    width: 100%;
+}
+}
+ul{
+    list-style: none;
+  li{
+      font-size: 25px;
+      color: black;
+  }
+}
+.input {
+border-radius: 3px;
+border: 4px solid #ddd;
+color: #555;
+font-size: 20px;
+width: $container-width/3;
+padding: 10px 10px;
+display:inline-flex;
+outline: 0;
+}
+
+$a-tags: 'a, a:active, a:hover, a:visited';
+$a-tags-hover: 'a:hover';
+$a-tags-active:'a:active';
+
+
+nav {
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+li {
+  display: inline-flex;
+}
+a {
+  display: block;
+  padding: 6px 12px;
+  text-decoration: none;
+}
+#{$a-tags} {
+  color: white;
+  text-decoration: none;
+  font-size: x-large;
+  font-weight: bold;
+}
+#{$a-tags-hover} {
+  color:lightgreen;
+}
+#{$a-tags-active}{
+  color:blue;
+  background-color:$primaryColor;
+
+}
+}
+.fa {
+padding: 0px;
+font-size: 40px;
+width: 50px;
+
+}
  h2{
    color:#260C0C;
    align-items: center;

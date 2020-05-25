@@ -1,13 +1,11 @@
 import React ,{Component} from 'react';
 import './styles/App.scss';
 import Login,{Signup} from './components/Login';
-import Profile from './components/Profile';
-import { BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
+import { BrowserRouter as Router, Route,  Link} from 'react-router-dom';
 import firebase  from './config/fireauth';
-import {} from 'react-bootstrap';
 import Header from './components/Header';
 import Footer from './components/Footer';
-
+import Home from './components/Home'
 class  App extends Component{
   constructor(props){
     super();
@@ -33,31 +31,11 @@ class  App extends Component{
     if(this.state.user!==null && this.state.user!==undefined ) {
 
       return (
-                  <div className="App">
+                <div className="App">
                   <div className="header">
                       <Header/>
-                      <>
-                        <Router>  
-                            <nav> 
-                            <ul className="menu">
-                            <li>
-                              <Link to="/Profile" >Resources</Link>
-                            </li>
-                            <li>
-                              <Link to='/' >Profile</Link>
-                            </li>
-                            </ul>
-                            </nav>
-                            <Switch>
-                              <Route exact path="/Profile" component={Profile}>  
-                              {this.props.children}
-                            </Route> 
-                            <Route exact path="/" component={Profile}>  
-                            </Route> 
-                        </Switch>
-                        </Router>            
-                      </>
-                  </div>
+                   </div>
+                   <Home/>
                   <div className="footer">
                       <Footer/>
                   </div>
