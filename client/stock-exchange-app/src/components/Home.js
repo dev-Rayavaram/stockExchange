@@ -2,11 +2,10 @@ import React,{Component} from 'react';
 import { Button } from 'react-bootstrap';
 import ReactDOM from 'react-dom'
 
-import Profile from './Profile';
 import { Container,Table } from 'semantic-ui-react';
-import { BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
+
+
 import axios from 'axios'
-import Stocks from './Stocks'
 import StockDetails from './StocksDetails'
 
 const summary = document.getElementById('summary')
@@ -56,25 +55,16 @@ class Home extends Component {
                 console.log("results inside add entries are");
                 console.log(results)
                 console.log(results["Global Quote"]["05. price"])
-                // Global Quote:
-                // 01. symbol: "AA"
-                // 02. open: "8.3000"
-                // 03. high: "8.3683"
-                // 04. low: "8.0200"
-                // 05. price: "8.2100"
-                // 06. volume: "4413516"
-                // 07. latest trading day: "2020-05-22"
-                // 08. previous close: "8.2800"
-                // 09. change: "-0.0700"
-                // 10. change percent: "-0.8454%"
+
                 let stock={
                     "customer_id":"1",
                     "name":stockDetail["2. name"],
                     "symbol":stockDetail["1. symbol"],
                     "price":results["Global Quote"]["05. price"]
                 }       
-                let listItem=
-                {"symbol":stockDetail["1. symbol"],
+                let listItem={
+                    "symbol":stockDetail["1. symbol"],
+                    "company":stockDetail["2. name"],
                     "listType":"day"
                 }
                 
@@ -172,39 +162,7 @@ class Home extends Component {
     render=()=>{
                     return (
                     <div className="main">
-                        <Container>
-                        <Router>  
-                            <nav> 
-                            <ul className="menu">
-                            <li>
-                                <Link to="/Profile" >Profile</Link>
-                            </li>
-                            <li>
-                                <Link to='/Home' >Home</Link>
-                            </li>
-                            <li>
-                                <Link to='/StockDetails/symbol' >StockDetails</Link>
-                            </li>
-                            <li>
-                                <Link to='/' >Stocks</Link>
-                            </li>
-                          
-                            </ul>
-                            </nav>
-                            <Switch>
-                                <Route exact path="/Profile" component={Profile}>  
-                                 </Route> 
-                                <Route exact path="/Home" component={Home}>  
-                                </Route> 
-                                <Route exact path="/StockDetails/:symbol" component={StockDetails}>  
-                                </Route> 
-                                <Route exact path="/" component={Stocks}>  
-                                </Route> 
-                            </Switch>
-                            </Router>            
-                            </Container>
-
-                        <Container className="search">
+                         <Container className="search">
                             <input type='text' className='input' name='phrase' placeholder='phrase'  onChange={this.handlePhraseChange}></input>
                             <Button variant="primary" size="lg" type="submit" onClick={this.handleSearch}> Search</Button>
                         </Container>
@@ -212,7 +170,6 @@ class Home extends Component {
                             { //Check if message failed
 
                                 (this.state.isLoaded===true && this.state.stocks!==null && this.state.stocks!==undefined)?
-                                <div className="main">
                                         <div className="sub-main-2">
                                         <h3>My Employees List</h3>
                                                     <Table className="mt-4">
@@ -257,7 +214,6 @@ class Home extends Component {
                                                 </tbody>
                                             </Table>
                                         </div>
-                                </div>
 
                         :
                         (
