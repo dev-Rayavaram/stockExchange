@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import com.stock.springboot.stockSight.exception.ResourceNotFoundException;
@@ -24,6 +25,13 @@ public class StockWatchListService {
 		public List<StockWatchList>getAllStockWatchList(){
 			return stockWatchListRepo.findAll();
 		}
+		public ResponseEntity<StockWatchList> getStockListById(@PathVariable(value="id") Long stockListid)
+		throws ResourceNotFoundException {
+			StockWatchList stockWatchList = stockWatchListRepo.findById(stockListid).
+					orElseThrow(()-> new ResourceNotFoundException("stockList notfound"+stockListid));
+			
+			return ResponseEntity.ok().body(stockWatchList);
+		}
 		public StockWatchList createStockList(@Valid @RequestBody StockWatchList stockListItem)
 		{
 			return stockWatchListRepo.save(stockListItem);
@@ -34,6 +42,8 @@ public class StockWatchListService {
 			orElseThrow(() -> new ResourceNotFoundException("Stock Item notfound" + customerId));
 			listItem.setListType(stockListItemDetail.getListType());
 			listItem.setSymbol(stockListItemDetail.getSymbol());
+			listItem.setCompany(stockListItemDetail.getCompany());
+
 			System.out.println("Syamala IS PRINTING"+listItem);
 			final StockWatchList updatedListItem = stockWatchListRepo.save(listItem);
 			return ResponseEntity.ok(updatedListItem);
