@@ -32,15 +32,6 @@ class Home extends Component {
         e.preventDefault();
         let index = e.target.name;
         let symbol= e.target.value;
-            // 1. symbol: "AA"
-            // 2. name: "Alcoa Corporation"
-            // 3. type: "Equity"
-            // 4. region: "United States"
-            // 5. marketOpen: "09:30"
-            // 6. marketClose: "16:00"
-            // 7. timezone: "UTC-05"
-            // 8. currency: "USD"
-            // 9. matchScore: "1.0000"
         let stockDetail = this.state.stocks[index];
         console.log("stockDetail",stockDetail);
          const url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${apiKey}`;
@@ -171,7 +162,7 @@ class Home extends Component {
 
                                 (this.state.isLoaded===true && this.state.stocks!==null && this.state.stocks!==undefined)?
                                         <div className="sub-main-2">
-                                        <h3>My Employees List</h3>
+                                        <h3>My Stocks List</h3>
                                                     <Table className="mt-4">
                                                         <thead>
                                                         <tr>

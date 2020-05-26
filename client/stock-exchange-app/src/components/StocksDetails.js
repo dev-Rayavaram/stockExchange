@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, Grid, Header, Segment } from 'semantic-ui-react'
 import ReactDOM from 'react-dom'
 import Stocks from './Stocks'
+
 class StockDetails extends Component {
 
   constructor(props) {

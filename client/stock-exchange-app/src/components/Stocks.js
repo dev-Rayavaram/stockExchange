@@ -3,6 +3,8 @@ import { Button } from 'react-bootstrap';
 import { Container,Table } from 'semantic-ui-react';
 import ReactDOM from 'react-dom'
 import StockDetails from './StocksDetails';
+
+
 class Stocks extends Component {
 
       constructor(props){
@@ -77,7 +79,7 @@ class Stocks extends Component {
           if(this.state.isLoaded && this.state.stocks!==null && this.state.stocks!==undefined){
                 return (
                     <div className="main">
-                         <a href="/" color='teal'>Home</a>
+                                      <a href="/" color='teal'>Home</a>
 
                          <Container>
                             { //Check if message failed
