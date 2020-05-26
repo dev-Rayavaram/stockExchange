@@ -2,12 +2,10 @@ import React ,{Component} from 'react';
 import './styles/App.scss';
 import Login,{Signup} from './components/Login';
 import firebase  from './config/fireauth';
-import Header from './components/Header';
 import Footer from './components/Footer';
-import Home from './components/Home'
-import { BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
-import StockDetails from './components/StocksDetails'
-import Stocks from './components/Stocks'
+import { BrowserRouter as Router, Route,  Link} from 'react-router-dom';
+import Navbar from './components/Navbar'
+import ReactDOM from 'react-dom';
 class  App extends Component{
   constructor(props){
     super();
@@ -38,6 +36,7 @@ class  App extends Component{
       });
       // window.location.reload(false);
       this.setState({state:this.state})
+      ReactDOM.render(<Login/>, document.getElementById('root'));
 
     }
   routeProtectionCheck() {
@@ -47,48 +46,13 @@ class  App extends Component{
       return (
                 <div className="App">
                   <div className="header">
-                      <Header/>
                       <button className = " ui button" style={{color:'teal'  ,size:'large'}} onClick={this.logout}>
                       Logout
                        </button>
+                      <Navbar/>
                    </div>
                    <div className="main">
-                        <Router>  
-                            <nav> 
-                            <ul className="menu">
-                           
-                            <li>
-                                <Link  exact  to='/StocksDetails/symbol' >Stocks Details</Link>
-                            </li>
-                            <li>
-                                <Link  exact  to='/Stocks' >Stocks</Link>
-                            </li>
-
-                            <li>
-                                <Link  exact  to='/Home' >Symbols</Link>
-                            </li>
-                            <li>
-                                <Link  exact  to='/' ></Link>
-                            </li>
-                         
-                            </ul>
-                            </nav>
-                            <Switch>
-
-                                <Route exact path="/StocksDetails/:symbol" component={StockDetails}>  
-                                </Route> 
-                                <Route exact path="/Home" component={Home}>  
-                                </Route> 
-                                <Route exact path="/Stocks" component={Stocks}>  
-                                </Route> 
- 
-                                <Route exact path="/" component={Home}>  
-                                </Route> 
-
-                            </Switch>
-                            </Router>            
-
-                            </div>
+                   </div>
                   <div className="footer">
                       <Footer/>
                   </div>
