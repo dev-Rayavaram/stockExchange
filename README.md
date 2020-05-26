@@ -20,6 +20,28 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
  
  https://newsapi.org/v2/everything
 
+### API Endpoints for the Springboot application
+
+QUOTE
+stock_watch_api/v1
+GET /quote
+POST /quote/quote
+
+STOCK SYMBOL 
+REST ENDPOINT
+stock_watch_api/v1
+GET /symbol
+POST /symbol/stocks
+
+STOCK WATCHLIST
+REST API ENDPOINT
+stock_watch_api/v1
+GET /
+GET SINGLE /stocks/{id}
+POST /stocks
+PUT /stock/{id}
+DELETE /stocks/{id}
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -86,3 +108,4 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
