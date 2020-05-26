@@ -17,6 +17,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ### External API Endpoints
  https://www.alphavantage.co
+ https://newsapi.org/v2/everything
 
 ## Available Scripts
 
