@@ -15,10 +15,10 @@ import javax.persistence.Table;
 
 public class StockSymbol {
 	@Id
+	@GeneratedValue
+	@Column(name = "stock_id")
+	private long id;
 	private String symbol;
-	@OneToOne(targetEntity=Quote.class,cascade=CascadeType.ALL,fetch=FetchType.LAZY,orphanRemoval=true)
-	@JoinColumn( name="symbol",referencedColumnName="symbol")
-	private Quote quote;
 	@Column(name = "name")
 	private String name;
 	
@@ -30,7 +30,7 @@ public class StockSymbol {
 		super();
 	}
 
-	public StockSymbol(String symbol, String name,String customer_id, float price) {
+	public StockSymbol(String customer_id, String name,String symbol, float price) {
 		super();
 		this.symbol = symbol;
 		this.name = name;
@@ -76,13 +76,15 @@ public class StockSymbol {
 		this.customer_id = customer_id;
 	}
 
-	public Quote getQuote() {
-		return quote;
+	public long getId() {
+		return id;
 	}
 
-	public void setQuote(Quote quote) {
-		this.quote = quote;
+	public void setId(long id) {
+		this.id = id;
 	}
+
+	
 	
 
 
