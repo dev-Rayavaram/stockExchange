@@ -3,14 +3,14 @@ import { Button } from 'react-bootstrap';
 import ReactDOM from 'react-dom'
 
 import { Container,Table } from 'semantic-ui-react';
-
+import NewsTrends from './NewaTrends'
 
 import axios from 'axios'
-import StockDetails from './StocksDetails'
 
 const summary = document.getElementById('summary')
 
 const apiKey=process.env.REACT_APP_API_KEY
+const apiKey2 = process.env.REACT_APP_API2_KEY
 class Home extends Component {
     constructor(props){
         super(props)
@@ -114,8 +114,7 @@ class Home extends Component {
     async getMoreInfo(e){
         alert("more info clicked")
         e.preventDefault();
-        let symbol= e.target.value;
-        const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}outputsize=compact&&apikey=${apiKey}`;
+        const url = `https://newsapi.org/v2/everything?q=Stock market&apikey=${apiKey2}`;
         axios.headers={
         'Access-Control-Allow-Origin': '*',
         'Content-Type': 'application/json', 
@@ -123,8 +122,12 @@ class Home extends Component {
         try{
           const res = await axios.get(url);
           const results = res.data;
-          console.log("results are");
-          ReactDOM.render(<StockDetails data={results} />, summary);
+          const content = results.articles
+          console.log("results are",content);
+          if(content!==null && content !== undefined)
+          {
+            ReactDOM.render(<NewsTrends data={content} />, summary);
+          }
          }
          
         catch (e){
