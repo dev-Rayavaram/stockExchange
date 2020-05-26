@@ -25,6 +25,12 @@ public class StockWatchListController {
 	public List<StockWatchList>getAllStockWatchList(){
 		return stockWatchListService.getAllStockWatchList();
 	}
+	@GetMapping("/stocks/{id}")
+	public ResponseEntity<StockWatchList> getStockWatchListItem(@PathVariable(value="id") Long stockListId)
+			throws ResourceNotFoundException {
+		return stockWatchListService.getStockListById(stockListId);
+	}
+	
 	@PostMapping("/stocks")
 	public StockWatchList addStockWatchList(@Valid @RequestBody StockWatchList stocklistItem)
 	{
