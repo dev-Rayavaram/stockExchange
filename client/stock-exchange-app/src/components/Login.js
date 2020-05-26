@@ -81,7 +81,7 @@ class  Login extends Component {
                           </Segment>
                         </Form>        
                         <Message>
-                          Not a User ?  <Link to="/Signup" >Signup </Link>
+                          Not a User ?  <a href="/Signup" >Signup </a>
                          </Message>
                    </Grid.Column>
                </Grid>
