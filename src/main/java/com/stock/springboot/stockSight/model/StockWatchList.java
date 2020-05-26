@@ -23,6 +23,9 @@ public class StockWatchList {
 	private long id;
 	private String symbol;
 	
+	@Column(name="company_name")
+	private String company;
+
 	@Column(name="list_type")
 	private String listType;
 
@@ -32,12 +35,20 @@ public class StockWatchList {
 		super();
 	}
 
-	public StockWatchList(String symbol,String listType) {
+	public StockWatchList(String symbol,String name,String listType) {
 		super();
 		this.symbol = symbol;
-
+		this.company = name;
 		this.listType = listType;
 	
+	}
+
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
 	}
 
 	public long getId() {
