@@ -1,4 +1,22 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Stocks Watchers
+## Mission Statement:
+1.  Provide a platform to search and research about stocks and save them on database for future reference.
+2. User need not know about Stock indexes and their symbols to research about any company stock, This app can be used by anyone who can type simple phrases.
+### Wireframe  
+ ![wireframe](./wireframe.png)
+
+##  Database design
+![wireframe](./db-wireframe.png)
+## Link to Hosted Websites
+### Link to React App
+[Stock Explorer](https://stockapp-4c2b7.web.app/)
+
+### Link to Java Application
+[Stock Explorer](https://stockexchangedev.herokuapp.com/stock_watch_api/v1/quote/)
+
+### External API Endpoints
+ https://www.alphavantage.co
 
 ## Available Scripts
 
