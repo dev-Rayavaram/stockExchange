@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.stock.springboot.stockSight.model.StockSymbol;
 @Repository
-public interface StockSymbolRepository extends JpaRepository<StockSymbol, String>{
+public interface StockSymbolRepository extends JpaRepository<StockSymbol, Long>{
 
 }
 
