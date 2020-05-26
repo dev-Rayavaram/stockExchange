@@ -51,16 +51,7 @@ class Stocks extends Component {
           console.log(stockDetail);
 
           ReactDOM.render(<StockDetails data = {stockDetail}/>, document.getElementById('root'));
-            // await fetch(`/stock_watch_api/v1/stock/${id}`, {
-            //   method: 'PUT',
-            //   headers: {
-            //     'Accept': 'application/json',
-            //     'Content-Type': 'application/json'
-            //   },
-            //   body: JSON.stringify(listItem) 
-            // }).then(() => {
-            //   console.log("update completed")
-            // });
+          
           }          
 
           async remove(e) {
@@ -86,6 +77,8 @@ class Stocks extends Component {
           if(this.state.isLoaded && this.state.stocks!==null && this.state.stocks!==undefined){
                 return (
                     <div className="main">
+                         <a href="/" color='teal'>Home</a>
+
                          <Container>
                             { //Check if message failed
 
