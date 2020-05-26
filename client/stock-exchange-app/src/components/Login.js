@@ -2,7 +2,9 @@ import React ,{Component } from 'react';
 import firebase from '../config/fireauth'
 import { Form, Grid, Header, Segment ,Message} from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
-import {Link} from 'react-router-dom';
+import ReactDOM from 'react-dom'
+import App from '../App'
+
 /*
     create class component Login
         initialize user state
@@ -41,7 +43,7 @@ class  Login extends Component {
                 console.log("result",u)
                 if(!("code" in u)== null){
                     console.log("inside if")
-                    this.props.history.push('/Home')
+                    ReactDOM.render(<App />, document.getElementById('root'));
 
                 }
             }
@@ -108,7 +110,7 @@ class  Login extends Component {
              (u)=>{
                     console.log(u)
                     console.log("u.uid",u.user.uid)
-                    this.props.history.push('/Home')
+                    ReactDOM.render(<App />, document.getElementById('root'));
       
               }
          ).catch(e=>{
@@ -145,7 +147,7 @@ class  Login extends Component {
                 </Segment>
                 </Form>
                 <Message>
-                  Already Signed-Up?<Link to="/" color='teal'> Login</Link>
+                  Already Signed-Up?<a href="/" color='teal'> Login</a>
                 </Message>
               </Grid.Column>
           </Grid>
