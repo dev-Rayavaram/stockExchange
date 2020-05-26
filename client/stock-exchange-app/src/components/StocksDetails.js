@@ -39,13 +39,16 @@ class StockDetails extends Component {
   async componentDidMount(props) {
     console.log("EDIT EMPLOYEE CALLED")
     let input =this.props.data;
-    this.setState({company:input.company})
-    this.setState({id:input.id})
-    this.setState({symbol:input.symbol})
-    this.setState({listType:input.listType})
-
-    this.setState({isLoaded:true})
-  }
+    if(this.props.data!==null && this.props.data!== undefined){
+        this.setState({company:input.company})
+        this.setState({id:input.id})
+        this.setState({symbol:input.symbol})
+        this.setState({listType:input.listType})
+    
+        this.setState({isLoaded:true})
+      
+    }
+   }
   handleNameChange=(event) =>{
         const value = event.target.value;
         this.setState({company:value,id:this.state.id,listType:this.state.listType,symbol:this.state.symbol});
@@ -65,7 +68,8 @@ class StockDetails extends Component {
             <React.Fragment>
 
                 <div className="main">
-
+                <a href="/" color='teal'>Home</a>
+                    <div className="container">
                 <Grid textAlign='center' style={{ height: '100%' ,width:'100%'}} verticalAlign='middle'>
 
                 <Grid  style={{background:'teal',width:'60%' ,height:'50%',maxWidth: 450}}>
@@ -87,6 +91,7 @@ class StockDetails extends Component {
                     </Grid.Column>
                 </Grid>
                 </Grid>
+                </div>
                 </div>
             </React.Fragment>
         )
