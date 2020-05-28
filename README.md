@@ -10,7 +10,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ![wireframe](./db-wireframe.png)
 ## Link to Hosted Websites
 ### Link to React App
-[Stock Explorer](https://stockapp-4c2b7.web.app/)
+[Stock Explorer](https://hidden-shelf-73289.herokuapp.com/)
 
 ### Link to Java Application
 [Stock Explorer](https://stockexchangedev.herokuapp.com/stock_watch_api/v1/quote/)
