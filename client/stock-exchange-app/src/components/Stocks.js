@@ -3,8 +3,12 @@ import { Button } from 'react-bootstrap';
 import { Container,Table } from 'semantic-ui-react';
 import ReactDOM from 'react-dom'
 import StockDetails from './StocksDetails';
+import axios from 'axios'
 
 
+let serverUrl="http://stockserver-env.eba-9aau8b3v.us-east-1.elasticbeanstalk.com"
+//let serverUrl="https://stockexchangedev.herokuapp.com"
+axios.defaults.baseURL = serverUrl;
 class Stocks extends Component {
 
       constructor(props){
@@ -20,8 +24,15 @@ class Stocks extends Component {
 
       }
       async componentDidMount() {
-          const response = await fetch('/stock_watch_api/v1/');
-          const body = await response.json();
+          axios.headers={
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
+          const response = await axios.get(`${serverUrl}/stock_watch_api/v1/`);
+          console.log("result in stocks get ",response);
+
+          const body =response.data;
+          console.log(body)
           this.setState({ stocks: body, isLoaded: true });
           console.log("this.state.stocks")
       
@@ -59,13 +70,12 @@ class Stocks extends Component {
           async remove(e) {
             let id =e.target.value;
             alert("delete calles"+e.target.value)
-            await fetch(`/stock_watch_api/v1/stocks/${id}`, {
-              method: 'DELETE',
-              headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-              }
-            }).then(() => {
+            axios.headers={
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            }
+            const result = await axios.delete(`${serverUrl}/stock_watch_api/v1/stocks/${id}`).then(() => {
+             console.log("result in stocks remove ",result);
               let updatedList = [...this.state.stocks].filter(i => i.id !== id);
               this.setState({stocks: updatedList});
             });
@@ -79,14 +89,13 @@ class Stocks extends Component {
           if(this.state.isLoaded && this.state.stocks!==null && this.state.stocks!==undefined){
                 return (
                     <div className="main">
-                                      <a href="/" color='teal'>Home</a>
-
+                        <a href="/" color='teal'>Home</a>
                          <Container>
                             { //Check if message failed
 
                                 (this.state.isLoaded===true && this.state.stocks!==null && this.state.stocks!==undefined)?
                                         <div className="sub-main-2">
-                                        <h3>My Stocks List</h3>
+                                        <h3> My Stocks List</h3>
                                                     <Table className="mt-4">
                                                         <thead>
                                                         <tr>
