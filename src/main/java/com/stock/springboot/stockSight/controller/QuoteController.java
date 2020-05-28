@@ -13,7 +13,7 @@ import javax.validation.Valid;
 
 
 @RestController
-@RequestMapping("stock_watch_api/v1")
+@RequestMapping("/stock_watch_api/v1")
 public class QuoteController {	
 	@Autowired
 	private QuoteService quoteService;
