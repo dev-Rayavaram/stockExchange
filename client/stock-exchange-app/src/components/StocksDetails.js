@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import { Form, Grid, Header, Segment } from 'semantic-ui-react'
 import ReactDOM from 'react-dom'
 import Stocks from './Stocks'
+import axios from 'axios'
 
+let serverUrl="http://stockserver-env.eba-9aau8b3v.us-east-1.elasticbeanstalk.com"
+
+//let serverUrl="https://stockexchangedev.herokuapp.com"
+//axios.defaults.baseURL = serverUrl;
 class StockDetails extends Component {
 
   constructor(props) {
@@ -25,16 +30,15 @@ class StockDetails extends Component {
         "symbol":this.state.symbol
     }
     
-
-      await fetch(`/stock_watch_api/v1/stock/${id}`, {
-        method: 'PUT',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
+      axios.headers={
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+      const result = axios.put(`${serverUrl}/stock_watch_api/v1/stock/${id}`, 
+       {
         body: JSON.stringify(listItem),
       })
-     
+     console.log("result inside stockDetails",result)
       ReactDOM.render(<Stocks/>, document.getElementById('root'));
     }
   async componentDidMount(props) {
