@@ -6,10 +6,10 @@ import { Container,Table } from 'semantic-ui-react';
 import NewsTrends from './NewsTrends'
 
 import axios from 'axios'
-let serverUrl="http://stockserver-env.eba-9aau8b3v.us-east-1.elasticbeanstalk.com"
+//let serverUrl="http://stockserver-env.eba-9aau8b3v.us-east-1.elasticbeanstalk.com"
 
-//let serverUrl="https://stockexchangedev.herokuapp.com"
-axios.defaults.baseURL = serverUrl;
+let serverUrl="https://stockexchangedev.herokuapp.com"
+//axios.defaults.baseURL = serverUrl;
 
 const summary = document.getElementById('summary')
 const apiKey=process.env.REACT_APP_API_KEY

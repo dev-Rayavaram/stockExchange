@@ -6,9 +6,9 @@ import StockDetails from './StocksDetails';
 import axios from 'axios'
 
 
-let serverUrl="http://stockserver-env.eba-9aau8b3v.us-east-1.elasticbeanstalk.com"
+let serverUrl="https://stockexchangedev.herokuapp.com"
 //let serverUrl="https://stockexchangedev.herokuapp.com"
-axios.defaults.baseURL = serverUrl;
+//axios.defaults.baseURL = serverUrl;
 class Stocks extends Component {
 
       constructor(props){
