@@ -3,12 +3,15 @@ import { Button } from 'react-bootstrap';
 import ReactDOM from 'react-dom'
 
 import { Container,Table } from 'semantic-ui-react';
-import NewsTrends from './NewaTrends'
+import NewsTrends from './NewsTrends'
 
 import axios from 'axios'
+let serverUrl="http://stockserver-env.eba-9aau8b3v.us-east-1.elasticbeanstalk.com"
+
+//let serverUrl="https://stockexchangedev.herokuapp.com"
+axios.defaults.baseURL = serverUrl;
 
 const summary = document.getElementById('summary')
-
 const apiKey=process.env.REACT_APP_API_KEY
 const apiKey2 = process.env.REACT_APP_API2_KEY
 class Home extends Component {
@@ -77,39 +80,25 @@ class Home extends Component {
                  axios.headers={                  
                     'Content-Type': 'application/json'
                     }
-                    await fetch(`/stock_watch_api/v1/symbol/stocks`, {
-                        method: 'POST',
-                        headers: {
-                          'Accept': 'application/json',
-                          'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(stock),
-                      })
-                      await fetch(`/stock_watch_api/v1/quote/quote`, {
-                        method: 'POST',
-                        headers: {
-                          'Accept': 'application/json',
-                          'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(quote),
-                      })
-                      await fetch(`/stock_watch_api/v1/stocks`, {
-                        method: 'POST',
-                        headers: {
-                          'Accept': 'application/json',
-                          'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(listItem),
-                      })
+            let stocksResults= axios.post(`${serverUrl}/stock_watch_api/v1/symbol/stocks`,
+                        stock
+                      )
+             let quoteResults= axios.post(`${serverUrl}/stock_watch_api/v1/quote/quote`, 
+                       quote,
+                      )
+            let watchListResults=  axios.post(`${serverUrl}/stock_watch_api/v1/stocks`,listItem)
+                console.log("stocksResults",stocksResults)
+                console.log("quoteResults",quoteResults)
+                console.log("watchListResults",watchListResults)
+        
 
-
-          }
+                }
+              
          
         catch (e){
           console.log(e);
         }
-       
-
+ 
     }
     async getMoreInfo(e){
         alert("more info clicked")
@@ -165,7 +154,7 @@ class Home extends Component {
 
                                 (this.state.isLoaded===true && this.state.stocks!==null && this.state.stocks!==undefined)?
                                         <div className="sub-main-2">
-                                        <h3>My Stocks List</h3>
+                                        <h3>Stocks List</h3>
                                                     <Table className="mt-4">
                                                         <thead>
                                                         <tr>
@@ -179,7 +168,7 @@ class Home extends Component {
                                                         </thead>
                                                         <tbody>
                                             {Object.values(this.state.stocks).map((item,index)=>{return(
-                                                        <tr>
+                                                        <tr key={index}>
                                                         <td>
                                                             {item["1. symbol"]}
                                                         </td>
@@ -196,11 +185,11 @@ class Home extends Component {
                                                             {item["6. marketClose"]}
                                                         </td>
                                                        <td>
-                                                       <Button color="success" type="button" name={index} value={item["1. symbol"]} onClick={this.addEntries}>Add</Button>
+                                                       <Button className="btn btn-primary" type="button" name={index} value={item["1. symbol"]} onClick={this.addEntries}>Add</Button>
 
                                                        </td>
                                                        <td>
-                                                       <Button color="info" value={item["1. symbol"]} type="button" onClick={this.getMoreInfo}>Market Trend</Button>
+                                                       <Button className="btn btn-info" value={item["1. symbol"]} type="button" onClick={this.getMoreInfo}>Market Trend</Button>
 
                                                        </td>
                                                         </tr>
@@ -213,7 +202,7 @@ class Home extends Component {
                         (
                             <div className="main">
                             <div className="sub-main-2">
-                                <h3 className="title">Stock</h3>
+                                
                             </div>
                             </div>
                          )
